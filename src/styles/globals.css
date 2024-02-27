@@ -2,10 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("custom-scrollbar.css");
+
+@layer components {
+  .dark{
+    @apply bg-black text-white;
+  }
+  .dark-modal{
+    @apply bg-black text-white border border-white/15 ;
+  }
+}
+
 :root {
   --primary-color: #f0fbfc;
   --highlight-color: #78dffd;
-  --text-color: rgb(87, 87, 87);
+  --text-color: rgb(105, 105, 105);
   --color-gradient: linear-gradient(269deg, #70ffba 0.52%, #78deff 100.71%);
 }
 
@@ -48,7 +59,6 @@ html {
 }
 
 .btn {
-  font-size: 14px;
   font-weight: 900;
   padding: 8px 12px;
   border-radius: 12px;
@@ -56,7 +66,50 @@ html {
   color: var(--text-color);
 }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.ripple {
+  position: relative;
+  overflow: hidden;
+  z-index: 999;
+  transition-duration: 500ms;
+}
+
+.ripple::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(255, 255, 255) !important;
+  width: 10%;
+  height: 25%;
+  border-radius: 50%;
+  z-index: -1;
+  top: 35%;
+  left: 45%;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.ripple:hover::before {
+  -webkit-transform: scale(15);
+  transform: scale(15);
+  -webkit-transition:
+    border-radius 0.5s 0.5s,
+    -webkit-transform 0.5s;
+  transition:
+    border-radius 0.5s 0.5s,
+    -webkit-transform 0.5s;
+  transition:
+    transform 0.5s,
+    border-radius 0.5s 0.5s;
+  transition:
+    transform 0.5s,
+    border-radius 0.5s 0.5s,
+    -webkit-transform 0.5s;
+}
+
+.ripple:hover::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }

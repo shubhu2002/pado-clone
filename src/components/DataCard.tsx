@@ -1,20 +1,35 @@
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { FaPlus } from "react-icons/fa6";
+import { useAppStore } from "~/store";
 
-const DataSourceModal: React.FC = () => {
+const DataCard: React.FC = () => {
+  const pathname = usePathname();
+  const { toggleDataSourcesModal, toggleProofsModal } = useAppStore();
   const userID = "0xcbdhbcdbcjhdc";
   const date = new Date();
 
   return (
-    <div className="h-[200px] w-full rounded-xl bg-[var(--primary-color)] px-6 py-2 duration-500 hover:-translate-y-2 md:w-[clamp(300px,45%,500px)]">
+    <motion.div
+      className="dark:dark h-[200px] w-full rounded-xl bg-[var(--primary-color)] px-6 py-2  dark:bg-white/5 md:w-[clamp(300px,45%,500px)]"
+      whileHover={{ y: -15 }}
+      transition={{ duration: 0.1 }}
+    >
       {/* wallet not connected or data is not available*/}
 
-      <div className="flex h-full w-full items-center justify-center gap-2 cursor-pointer">
-          <FaPlus /> <span className="text-xl font-extrabold">Add</span>
-        </div>
+      <div
+        className="flex h-full w-full cursor-pointer items-center justify-center gap-2"
+        onClick={
+          pathname === "/datas"
+            ? () => toggleDataSourcesModal(true)
+            : () => toggleProofsModal(true)
+        }
+      >
+        <FaPlus /> <span className="text-xl font-extrabold">Add</span>
+      </div>
 
       {/* wallet connect && if there is any data*/}
-      
+
       {/* <div className="flex h-full w-full flex-col justify-around">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-2 ">
@@ -50,8 +65,8 @@ const DataSourceModal: React.FC = () => {
           </div>
         </div>
       </div> */}
-    </div>
+    </motion.div>
   );
 };
 
-export default DataSourceModal;
+export default DataCard;

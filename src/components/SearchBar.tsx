@@ -15,13 +15,13 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex h-12  w-1/6 items-center justify-between rounded-xl bg-[var(--primary-color)] px-2 lg:px-6">
+      <div className="dark:dark-modal flex  h-12 w-1/6 items-center justify-between rounded-xl bg-[var(--primary-color)] px-2 lg:px-6 ">
         <span className="font-bold">All</span>
         <span className="hover:rotate-180">
           <IoIosArrowDown />
         </span>
       </div>
-      <div className="flex h-12 w-4/5 items-center rounded-xl bg-[var(--primary-color)]">
+      <div className="dark:dark-modal flex h-12 w-4/5 items-center rounded-xl bg-[var(--primary-color)]">
         <span className="absolute px-3">
           <CiSearch size={24} color="gray" />
         </span>
@@ -30,7 +30,7 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({
           placeholder="Search..."
           value={query}
           onChange={handleInputChange}
-          className="h-full w-full rounded-xl border-none bg-[var(--primary-color)] pl-12 outline-[var(--highlight-color)] focus:bg-white"
+          className="dark:dark-modal h-full w-full rounded-xl border-none bg-[var(--primary-color)] pl-12 outline-[var(--highlight-color)] focus:bg-white dark:focus:bg-black"
         />
       </div>
     </div>
